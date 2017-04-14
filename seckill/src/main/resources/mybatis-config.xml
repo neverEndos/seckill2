@@ -6,7 +6,7 @@
     <!-- 全局属性 -->
     <settings>
         <!-- 使用JDBC的getGeneratedKeys 获取数据库自增主键值,默认false -->
-        <setting name="useGeneratedKeys" value="true"/>schema.sql
+        <setting name="useGeneratedKeys" value="true"/>
         <!-- 使用列别名替换列名,默认true -->
         <setting name="useColumnLabel" value="true"/>
         <!-- 开启驼峰命名,默认false -->

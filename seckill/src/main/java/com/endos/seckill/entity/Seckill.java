@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Seckill {
     // 秒杀ID
-    private long seckillId;
+    private Long seckillId;
     // 商品名称
     private String name;
     // 商品数量
@@ -20,11 +20,11 @@ public class Seckill {
     // 秒杀时间
     private Date createTime;
 
-    public long getSeckillId() {
+    public Long getSeckillId() {
         return seckillId;
     }
 
-    public void setSeckillId(long seckillId) {
+    public void setSeckillId(Long seckillId) {
         this.seckillId = seckillId;
     }
 
@@ -36,11 +36,11 @@ public class Seckill {
         this.name = name;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

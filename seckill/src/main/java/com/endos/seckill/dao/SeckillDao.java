@@ -13,7 +13,7 @@ public interface SeckillDao {
 
     int reduceNumber(@Param("seckillId") Long seckillId, @Param("killTime") Date killTime);
 
-    Seckill queryById(@Param("id") Long id);
+    Seckill queryById(@Param("seckillId") Long seckillId);
 
     List<Seckill> queryAll(@Param("offset") int offset, @Param("limit") int limit);
 }
