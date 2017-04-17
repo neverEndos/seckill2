@@ -9,6 +9,7 @@ import com.endos.seckill.exception.RepeatKillException;
 import com.endos.seckill.exception.SeckillCloseException;
 import com.endos.seckill.service.SeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * Created by Endos on 2017/04/17.
  */
-@RestController
+@Controller
 @RequestMapping("/seckill")
 public class SeckillController {
 
@@ -62,6 +63,7 @@ public class SeckillController {
      * @return
      */
     @RequestMapping(value = "/{seckillId}/exposer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
     public SeckillResult<Exposer> exposer(@PathVariable("seckillId") Long seckillId) {
         SeckillResult<Exposer> result;
         try {
@@ -81,6 +83,7 @@ public class SeckillController {
      * @return
      */
     @RequestMapping(value = "/{seckillId}/{md5}/execution", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
     public SeckillResult<SeckillExecution> execute(
             @PathVariable("seckillId") Long seckillId, @PathVariable("md5") String md5,
             @CookieValue(value = "killPhone", required = false) Long userPhone) {
@@ -109,6 +112,7 @@ public class SeckillController {
      * @return
      */
     @RequestMapping(value = "/time/now", method = RequestMethod.GET)
+    @ResponseBody
     public SeckillResult<Long> now(){
         Date now = new Date();
         return new SeckillResult<Long>(true, now.getTime());
