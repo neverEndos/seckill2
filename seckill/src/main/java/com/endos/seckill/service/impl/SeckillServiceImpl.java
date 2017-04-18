@@ -44,7 +44,6 @@ public class SeckillServiceImpl implements SeckillService {
 
     /**
      * 根据ID查询对应秒杀记录
-     *
      * @param seckillId
      * @return
      */
@@ -54,7 +53,6 @@ public class SeckillServiceImpl implements SeckillService {
 
     /**
      * 暴露秒杀URL
-     *
      * @param seckillId
      */
     public Exposer exportSeckillUrl(Long seckillId) {
@@ -79,7 +77,6 @@ public class SeckillServiceImpl implements SeckillService {
 
     /**
      * MD5加密
-     *
      * @param seckillId
      * @return
      */
