@@ -2,6 +2,7 @@ package com.endos.seckill.service.impl;
 
 import com.endos.seckill.dao.SeckillDao;
 import com.endos.seckill.dao.SuccessKilledDao;
+import com.endos.seckill.dao.cache.RedisDao;
 import com.endos.seckill.dto.Exposer;
 import com.endos.seckill.dto.SeckillExecution;
 import com.endos.seckill.entity.Seckill;
@@ -33,6 +34,8 @@ public class SeckillServiceImpl implements SeckillService {
     private SeckillDao seckillDao;
     @Autowired
     private SuccessKilledDao successKilledDao;
+    @Autowired
+    private RedisDao redisDao;
 
     /**
      * 默认查询5条记录
@@ -40,15 +43,6 @@ public class SeckillServiceImpl implements SeckillService {
      */
     public List<Seckill> getSeckillList() {
         return seckillDao.queryAll(0, 5);
-    }
-
-    /**
-     * 根据ID查询对应秒杀记录
-     * @param seckillId
-     * @return
-     */
-    public Seckill getById(Long seckillId) {
-        return seckillDao.queryById(seckillId);
     }
 
     /**
@@ -73,6 +67,22 @@ public class SeckillServiceImpl implements SeckillService {
         // 秒杀正常，加密seckillId
         String md5 = getMD5(seckillId);
         return new Exposer(true, md5, seckillId);
+    }
+
+    /**
+     * 根据ID查询对应秒杀记录
+     * @param seckillId
+     * @return
+     */
+    public Seckill getById(Long seckillId) {
+        Seckill seckill = redisDao.getSeckill(seckillId);
+        if (seckill == null) {
+            seckill = seckillDao.queryById(seckillId);
+            if (seckill != null) {
+                redisDao.putSeckill(seckill);
+            }
+        }
+        return seckill;
     }
 
     /**
